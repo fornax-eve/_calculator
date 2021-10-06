@@ -1,9 +1,10 @@
-let title = "_calculator";
-let screens = "Simple, Complex, Interactive";
-let screenPrice = 15_000;
+'use strict';
+let title;
+let screens;
+let screenPrice;
+let fullPrice;
+let adaptive;
 let rollback = 7;
-let fullPrice = 27_000;
-let adaptive = true;
 
 console.group("Types of data")
 console.log("title - " + typeof title)
@@ -27,24 +28,17 @@ console.log(fullPrice * (rollback / 100))
 console.groupEnd()
 
 title = prompt('Как называется ваш проэкт?');
-screens = prompt('Какие типы экранов нужно разработать?');
-screenPrice = parseInt(prompt('Сколько будет стоить данная работа?'));
+screens = prompt('Какие типы экранов нужно разработать?', 'Simple, Complex, Interactive');
+screenPrice = parseInt(prompt('Сколько будет стоить данная работа?', '15_000'));
 adaptive = confirm("Нужен ли адаптив на сайте?");
 
-if (screenPrice) {
-    let service1 = prompt('Какой дополнительный тип услуги нужен?');
-    let servicePrice1 = 0;
-    service1 ? servicePrice1 = parseInt(prompt('Сколько это будет стоить?')) : servicePrice1;
 
-    let service2 = prompt('Какой дополнительный тип услуги нужен?');
-    let servicePrice2 = 0;
-    service2 ? servicePrice2 = parseInt(prompt('Сколько это будет стоить?')) : servicePrice2;
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice1 = parseInt(prompt('Сколько это будет стоить?'));
+let service2 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice2 = parseInt(prompt('Сколько это будет стоить?'));
 
-    fullPrice = screenPrice + servicePrice1 + servicePrice2;
-    alert(fullPrice)
-} else {
-    alert('Вы не ввели стоимость проэкта')
-};
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
 let servicePercentPrice = Math.ceil(fullPrice * (rollback / 100));
 console.log(servicePercentPrice);
@@ -67,5 +61,6 @@ switch (true) {
         discount = undefined;
         alert(`Что то пошло не так`);
         break;
-};
+}
+;
 console.log(discount);
