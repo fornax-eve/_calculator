@@ -34,7 +34,7 @@ const getAllServicePrices = function (x, y) {
             service2 = prompt('Какой дополнительный тип услуги нужен?')
         }
         do {
-            sum = prompt('Сколько это будет стоить?')
+            sum = +prompt('Сколько это будет стоить?')
         } while (!isNumber(sum))
         sum += sum;
     }
@@ -92,3 +92,5 @@ showTypeOf(adaptive)
 console.log("allServicePrices", allServicePrices)
 console.log(screens.split(', '))
 console.log(getServicePercentPrices(fullPrice, rollback))
+
+console.log(typeof allServicePrices)
