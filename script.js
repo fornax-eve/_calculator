@@ -54,7 +54,7 @@ console.groupEnd()
 console.log(screens.toLowerCase().split(", "))
 
 console.group("Percentage of rollback to the intermediary for work :")
-console.log(fullPrice * (rollback / 100))
+console.log(Math.round(fullPrice * (rollback / 100)))
 console.groupEnd()
 
 console.log(servicePercentPrice);
