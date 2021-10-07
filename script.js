@@ -1,3 +1,4 @@
+'use strict';
 let title = "calculator";
 let screens = "Simple, Complex, Interactive";
 let screenPrice = 15_000;
