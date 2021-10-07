@@ -1,19 +1,15 @@
 'use strict';
-let title = "calculator";
-let screens = "Simple, Complex, Interactive";
-let screenPrice = 15_000;
+let title;
+let screens;
+let screenPrice;
+let service1;
+let service2;
 let rollback = 7;
-let adaptive = true;
+let adaptive;
 let allServicePrices; //суммa всех дополнительных услуг
 let fullPrice; //суммa стоимости верстки и стоимости дополнительных услуг
 let servicePercentPrice; //итоговая стоимость(fullPrice) минус сумма отката
 let discount = 0;
-let service1;
-let service2;
-
-const isNumber = function(num) {
-    return !isNaN(parseFloat(num)) && isFinite(num)
-}
 
 const asking = function() {
     title = prompt('Как называется ваш проэкт?', 'Калькулятор вёрстки');
@@ -26,6 +22,15 @@ const asking = function() {
     adaptive = confirm("Нужен ли адаптив на сайте?");
 }
 
+const isNumber = function(num) {
+    console.log(parseFloat(num))
+    console.log(isFinite(num))
+    if (num) {
+        return !isNaN(parseFloat(num) && isFinite(num))
+    };
+    return false;
+}
+
 const getAllServicePrices = function (x, y) {
     let sum = 0;
     for (let i = 0; i < 2; i++){
@@ -34,10 +39,11 @@ const getAllServicePrices = function (x, y) {
         } else if (i === 1) {
             service2 = prompt('Какой дополнительный тип услуги нужен?')
         }
+        let sum1 = 0;
         do {
-            sum = +prompt('Сколько это будет стоить?')
-        } while (!isNumber(sum))
-        sum += sum;
+            sum1 = +prompt('Сколько это будет стоить?').trim()
+        } while (!isNumber(sum1))
+        sum += sum1;
     }
     return sum;
 }
@@ -85,6 +91,7 @@ allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(allServicePrices, screenPrice);
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
+title = getTitle(title)
 getRollbackMessage(fullPrice)
 showTypeOf(title)
 showTypeOf(screenPrice)
