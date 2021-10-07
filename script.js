@@ -1,26 +1,17 @@
-let title = "calculator";
-let screens = "Simple, Complex, Interactive";
-let screenPrice = 15_000;
-let rollback = 7;
-let adaptive = true;
+'use strict';
+let title = prompt('Как называется ваш проэкт?, 'Калькулятор вёрстки');
+let screens = prompt('Какие типы экранов нужно разработать? Ввод через запятую',"Simple, Complex, Interactive");
+let screenPrice = parseInt(prompt('Сколько будет стоить данная работа?', '15000'));
+let adaptive = confirm("Нужен ли адаптив на сайте?");
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice1 = parseInt(prompt('Сколько это будет стоить?'));
+let service2 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice2 = parseInt(prompt('Сколько это будет стоить?'));
 let allServicePrices; //суммa всех дополнительных услуг
 let fullPrice; //суммa стоимости верстки и стоимости дополнительных услуг
 let servicePercentPrice; //итоговая стоимость(fullPrice) минус сумма отката
+let rollback = 7;
 let discount = 0;
-
-title = prompt('Как называется ваш проэкт?');
-screens = prompt('Какие типы экранов нужно разработать? Ввод через запятую');
-screenPrice = parseInt(prompt('Сколько будет стоить данная работа?'));
-adaptive = confirm("Нужен ли адаптив на сайте?");
-
-
-let service1 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice1 = 0;
-service1 ? servicePrice1 = parseInt(prompt('Сколько это будет стоить?')) : servicePrice1;
-
-let service2 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice2 = 0;
-service2 ? servicePrice2 = parseInt(prompt('Сколько это будет стоить?')) : servicePrice2;
 
 const showTypeOf = function (variable) {
     console.log(variable, typeof variable)
@@ -64,6 +55,7 @@ function getRollbackMessage(price) {
     }
 }
 
+title = getTitle(title)
 allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 fullPrice = getFullPrice(allServicePrices, screenPrice);
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
