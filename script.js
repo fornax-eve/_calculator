@@ -23,8 +23,6 @@ const asking = function() {
 }
 
 const isNumber = function(num) {
-    console.log(parseFloat(num))
-    console.log(isFinite(num))
     if (num) {
         return !isNaN(parseFloat(num) && isFinite(num))
     };
@@ -100,5 +98,3 @@ showTypeOf(adaptive)
 console.log("allServicePrices", allServicePrices)
 console.log(screens.split(', '))
 console.log(getServicePercentPrices(fullPrice, rollback))
-
-console.log(typeof allServicePrices)
