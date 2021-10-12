@@ -12,7 +12,7 @@ const appData = {
     servicePercentPrice: 0,
     asking: function () {
         do {
-            appData.title = prompt('Как называется ваш проэкт?', 'Калькулятор вёрстки');
+            appData.title = prompt('Как называется ваш проэкт?', 'Калькулятор вёрстки').trim();
         } while (!appData.isString(appData.title));
         // appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, сложные');
         //
@@ -23,12 +23,12 @@ const appData = {
         for (let i = 0; i < 2; i++) {
             let name;
             do {
-                name = prompt('Какие типы экранов нужно разработать??');
+                name = prompt('Какие типы экранов нужно разработать??').trim();
             } while (!appData.isString(name));
 
                 let price = 0;
                 do {
-                    price = +prompt('Сколько будет стоить данная работа?', 15000);
+                    price = +prompt('Сколько будет стоить данная работа?', 15000).trim();
                 } while (!appData.isNumber(price))
                 appData.screens.push({id: i, name: name, price: price})
         }
@@ -36,8 +36,11 @@ const appData = {
         for (let i = 0; i < 2; i++) {
             let name;
             do {
-                name = prompt('Какой дополнительный тип услуги нужен?');
+                name = prompt('Какой дополнительный тип услуги нужен?').trim();
             } while (!appData.isString(name));
+            if (typeof appData.services[name] != 'undefined') {
+                name += i; //добавить каждому названию ключа уникальность при повторении
+            }
                 let price = 0;
                 do {
                     price = +prompt('Сколько это будет стоить?').trim()
@@ -48,9 +51,13 @@ const appData = {
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
     addPrices: function () {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +screen.price
-        }
+        // for (let screen of appData.screens) {
+        //     appData.screenPrice += +screen.price
+        // }
+        appData.screenPrice = appData.screens.reduce(function(total, amount) {
+            return total += amount.price
+        }, 0)
+
         for (let key in appData.services) {
             appData.allServicePrices += appData.services[key];
         }
