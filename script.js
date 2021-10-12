@@ -29,9 +29,9 @@ const appData = {
 
                 let price = 0;
                 do {
-                    price = +prompt('Сколько будет стоить данная работа?', 15000);
+                    price = prompt('Сколько будет стоить данная работа?', 15000);
                 } while (!appData.isNumber(price))
-                appData.screens.push({id: i, name: name, price: price})
+                appData.screens.push({id: i, name: name, price: +price})
         }
 
         for (let i = 0; i < 2; i++) {
@@ -44,9 +44,9 @@ const appData = {
             }
                 let price = 0;
                 do {
-                    price = +prompt('Сколько это будет стоить?');
+                    price = prompt('Сколько это будет стоить?');
                 } while (!appData.isNumber(price))
-                appData.services[name] = price;
+                appData.services[name] = +price;
         }
 
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
