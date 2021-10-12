@@ -20,41 +20,29 @@ const appData = {
         //     appData.screenPrice = +prompt('Сколько будет стоить данная работа?', 15000);
         // } while (!appData.isNumber(appData.screenPrice))
 
-        let name1 = '';
         for (let i = 0; i < 2; i++) {
             let name;
             do {
                 name = prompt('Какие типы экранов нужно разработать??');
             } while (!appData.isString(name));
 
-            if (name != name1) { // не введен ли дважды тот же тип услуги
-                name1 = name;
                 let price = 0;
                 do {
                     price = +prompt('Сколько будет стоить данная работа?', 15000);
                 } while (!appData.isNumber(price))
                 appData.screens.push({id: i, name: name, price: price})
-            } else {
-                alert('Этот тип услуги уже введён.')
-            }
         }
 
-        let name2 = '';
         for (let i = 0; i < 2; i++) {
             let name;
             do {
                 name = prompt('Какой дополнительный тип услуги нужен?');
             } while (!appData.isString(name));
-            if (name != name1) { // не введен ли дважды тот же тип услуги
-                name2 = name;
                 let price = 0;
                 do {
                     price = +prompt('Сколько это будет стоить?').trim()
                 } while (!appData.isNumber(price))
                 appData.services[name] = price;
-            } else {
-                alert('Этот тип услуги уже введён.')
-            }
         }
 
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
@@ -90,18 +78,18 @@ const appData = {
         appData.title = appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
     },
     getServicePercentPrices: function () {
-        appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));
+        appData.servicePercentPrice = Math.round(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
     },
     getRollbackMessage: function (price) {
         let discount;
         switch (true) {
             case price > 30_000 :
                 discount = price * 0.1;
-                console.log(`Даем скидку в 10%, что равно ${discount} рублей`);
+                console.log(`Даем скидку в 10%, что равно ${Math.round(discount)} рублей`);
                 break;
             case (price <= 30_000) && (price > 15_000) :
                 discount = price * 0.05;
-                console.log(`Даем скидку в 5%, что равно ${discount} рублей`);
+                console.log(`Даем скидку в 5%, что равно ${Math.round(discount)} рублей`);
                 break;
             case (price <= 15_000) && (price > 0) :
                 discount = 0;
