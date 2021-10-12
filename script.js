@@ -29,7 +29,7 @@ const appData = {
 
                 let price = 0;
                 do {
-                    price = +prompt('Сколько будет стоить данная работа?', 15000).trim();
+                    price = prompt('Сколько будет стоить данная работа?', 15000);
                 } while (!appData.isNumber(price))
                 appData.screens.push({id: i, name: name, price: price})
         }
@@ -44,7 +44,7 @@ const appData = {
             }
                 let price = 0;
                 do {
-                    price = +prompt('Сколько это будет стоить?').trim()
+                    price = prompt('Сколько это будет стоить?').trim()
                 } while (!appData.isNumber(price))
                 appData.services[name] = price;
         }
@@ -65,9 +65,9 @@ const appData = {
     },
     isNumber: function (num) {
         if (num) {
+            num = num.trim();
             return !isNaN(parseFloat(num) && isFinite(num))
-        }
-        ;
+        }        ;
         return false;
     },
     isString: function (str) {
