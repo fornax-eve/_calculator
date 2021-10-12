@@ -12,7 +12,7 @@ const appData = {
     servicePercentPrice: 0,
     asking: function () {
         do {
-            appData.title = prompt('Как называется ваш проэкт?', 'Калькулятор вёрстки').trim();
+            appData.title = prompt('Как называется ваш проэкт?', 'Калькулятор вёрстки');
         } while (!appData.isString(appData.title));
         // appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, сложные');
         //
@@ -23,7 +23,8 @@ const appData = {
         for (let i = 0; i < 2; i++) {
             let name;
             do {
-                name = prompt('Какие типы экранов нужно разработать??').trim();
+                name = prompt('Какие типы экранов нужно разработать?');
+                console.log(name)
             } while (!appData.isString(name));
 
                 let price = 0;
@@ -36,7 +37,7 @@ const appData = {
         for (let i = 0; i < 2; i++) {
             let name;
             do {
-                name = prompt('Какой дополнительный тип услуги нужен?').trim();
+                name = prompt('Какой дополнительный тип услуги нужен?');
             } while (!appData.isString(name));
             if (typeof appData.services[name] != 'undefined') {
                 name += i; //добавить каждому названию ключа уникальность при повторении
@@ -70,8 +71,14 @@ const appData = {
         return false;
     },
     isString: function (str) {
+
+        let pattern = /^[\s]+$/
+
         if (appData.isNumber(str)) {
             return false
+        } else if (pattern.test(str)) {
+            alert('Сами пробелы не подходят');
+            return false;
         } else if (str) {
             return true
         } else {
