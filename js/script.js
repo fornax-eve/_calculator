@@ -1,19 +1,23 @@
 'use strict';
 
-const calculator = document.getElementsByTagName('h1')[0];
-const btnStart = document.getElementsByClassName('handler_btn')[0];
-const btnReset = document.getElementsByClassName('handler_btn')[1];
-const btnScreen = document.querySelector('.screen-btn');
-const otherPercent = document.querySelectorAll('.other-items.percent');
-const otherNumber = document.querySelectorAll('.other-items.number');
-const inputRange = document.querySelector('.rollback [type="range"]');
-const spanValue = document.querySelector('.rollback [class = "range-value"]')
-const screenPrice = document.getElementsByClassName('total-input')[0];
-const screenNumbers = document.getElementsByClassName('total-input')[1];
-const servicePrices = document.getElementsByClassName('total-input')[2];
-const fullPrice = document.getElementsByClassName('total-input')[3];
-let screen = document.querySelectorAll('.screen');
+const title = document.getElementsByTagName('h1')[0];
+const buttonPlus = document.querySelector('.screen-btn');
+const otherItemsPercent = document.querySelectorAll('.other-items.percent');
+const otherItemsNumber = document.querySelectorAll('.other-items.number');
 
+const inputRange = document.querySelector('.rollback [type="range"]');
+const inputRangeValue = document.querySelector('.rollback [class = "range-value"]');
+
+const startBtn = document.getElementsByClassName('handler_btn')[0];
+const resetBtn = document.getElementsByClassName('handler_btn')[1];
+
+const total = document.getElementsByClassName('total-input')[0];
+const totalCount = document.getElementsByClassName('total-input')[1];
+const totalCountOther = document.getElementsByClassName('total-input')[2];
+const fullTotalCount = document.getElementsByClassName('total-input')[3];
+const totalCountRollback = document.getElementsByClassName('total-input')[4];
+
+let screens = document.querySelectorAll('.screen');
 
 // const appData = {
 //     title: '',
