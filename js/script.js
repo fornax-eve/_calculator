@@ -237,6 +237,11 @@ const appData = {
         buttonPlus.disabled = false;
         inputRange.value = 10;
         inputRangeValue.textContent = 10 + '%';
+        total.value = 0;
+        totalCount.value = 0;
+        totalCountOther.value = 0;
+        fullTotalCount.value = 0;
+        totalCountRollback.value = 0;
     },
     openCmsBlock: function () {
         if( cms.checked == true) {
