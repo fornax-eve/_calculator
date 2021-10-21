@@ -50,6 +50,22 @@ const appData = {
         inputRange.addEventListener('input', this.rollbackPersent.bind(appData));
         resetBtn.addEventListener('click', this.resetAll.bind(appData));
         cms.addEventListener('change', this.openCmsBlock.bind(appData));
+        forBlockingCheckAfterCalculating.forEach(elem => {
+            const check = elem.querySelector('[type="checkbox"]');
+            const input = elem.querySelector('[type="text"]');
+            const value = +input.value;
+            check.addEventListener('change', () => {
+                if (check.checked) {
+                    input.removeAttribute('disabled')
+                } else {
+                    input.value = value;
+                    input.setAttribute('disabled', 'disabled')
+                }
+            })
+            resetBtn.addEventListener('mouseup', () => {
+                input.value = value;
+            })
+        })
     },
     addTitle: function () {
         document.title = title.textContent;
@@ -86,7 +102,29 @@ const appData = {
             } else {
                 this.checkVariable = true;
             }
-        })
+        });
+        if (this.checkVariable == true) {
+            otherItemsPercent.forEach(percent => {
+                const check = percent.querySelector('[type="checkbox"]');
+                const input = percent.querySelector('[type="text"]');
+                if (check.checked) {
+                    if (!this.isNumber(+input.value) || !((0 < +input.value) && (+input.value < 100))) {
+                        this.checkVariable = false;
+                        alert('Для расчётов Вы должны корректно заполнить все обязательные поля!');
+                    }
+                }
+            });
+            otherItemsNumber.forEach(number=> {
+                const check = number.querySelector('[type="checkbox"]');
+                const input = number.querySelector('[type="text"]');
+                if (check.checked) {
+                    if (!this.isNumber(+input.value) || !(+input.value > 0)) {
+                        this.checkVariable = false;
+                        alert('Для расчётов Вы должны корректно заполнить все обязательные поля!');
+                    }
+                }
+            })
+        }
     },
     addServices: function () {
         this.servicePricesNumber = 0;
@@ -95,9 +133,6 @@ const appData = {
             const check = element.querySelector('input[type = "checkbox"]');
             const label = element.querySelector('label');
             const input = element.querySelector('input[type = "text"]');
-            // console.log(check);
-            // console.log(label);
-            // console.log(input);
             if (check.checked) {
                 this.servicesPercent[label.textContent] = +input.value;
             }
@@ -157,7 +192,9 @@ const appData = {
     blockAfterCalculating: function () {
         forBlockingCheckAfterCalculating.forEach((element) => {
             const check = element.querySelector('input[type = "checkbox"]');
+            const input = element.querySelector('[type="text"]');
             check.setAttribute('disabled', 'disabled');
+            input.setAttribute('disabled', 'disabled');
         });
         screens.forEach((screen, index) => {
             const select = screen.querySelector('select');
