@@ -98,7 +98,6 @@ const appData = {
             const input = screen.querySelector('input');
             if (select[select.selectedIndex] == 0 || !this.isNumber(+input.value)) {
                 this.checkVariable = false;
-                alert('Для расчётов Вы должны корректно заполнить все обязательные поля!');
             } else {
                 this.checkVariable = true;
             }
@@ -110,7 +109,6 @@ const appData = {
                 if (check.checked) {
                     if (!this.isNumber(+input.value) || !((0 < +input.value) && (+input.value < 100))) {
                         this.checkVariable = false;
-                        alert('Для расчётов Вы должны корректно заполнить все обязательные поля!');
                     }
                 }
             });
@@ -120,7 +118,6 @@ const appData = {
                 if (check.checked) {
                     if (!this.isNumber(+input.value) || !(+input.value > 0)) {
                         this.checkVariable = false;
-                        alert('Для расчётов Вы должны корректно заполнить все обязательные поля!');
                     }
                 }
             })
@@ -167,9 +164,6 @@ const appData = {
         }, 0)
     },
     rollbackPersent: function () {
-        console.log(appData.rollback)
-        console.log(this)
-
         this.rollback = inputRange.value;
         inputRangeValue.textContent = appData.rollback + '%';
         if (totalCountRollback.value) {
@@ -241,6 +235,8 @@ const appData = {
             cms.checked = false
         }
         buttonPlus.disabled = false;
+        inputRange.value = 10;
+        inputRangeValue.textContent = 10 + '%';
     },
     openCmsBlock: function () {
         if( cms.checked == true) {
